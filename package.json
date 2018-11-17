@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "start": "next",
+    "now-build": "next build && next export -o dist"
+  },
+  "dependencies": {
+    "next": "7.0.2",
+    "next-images": "1.0.1",
+    "next-optimized-images": "1.4.1",
+    "react": "16.6.1",
+    "react-dom": "16.6.1",
+    "styled-components": "4.0.3"
+  }
+}
