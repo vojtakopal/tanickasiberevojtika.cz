@@ -29,6 +29,7 @@ const WelcomeWrapper = styled.div`
     bottom: 0;
     font-size: 5em;
     font-family: Helvetica;
+    color: white;
 `;
 
 const mod = m => x => (((x % m) + m) % m);
