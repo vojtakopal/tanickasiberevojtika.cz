@@ -37,14 +37,7 @@ class InfiniteVirtualGrid extends React.Component {
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
-
-        this.interval = setInterval(() => {
-            this.setState({
-                dx: this.state.dx + (0.5 - Math.random()) * 320,
-                dy: this.state.dy + (0.5 - Math.random()) * 240,
-                pose: this.state.pose === 'on' ? 'off' : 'on',
-            });
-        }, INTERVAL);
+        this.startAnimation();
     }
 
     componentWillUnmount() {
@@ -53,6 +46,9 @@ class InfiniteVirtualGrid extends React.Component {
     }
 
     handleDragEnd = () => { 
+        if (this.timer) {
+            clearTimeout(this.timer);
+        }
         this.timer = setTimeout(this.startAnimation, INTERVAL)
     };
 
@@ -71,6 +67,10 @@ class InfiniteVirtualGrid extends React.Component {
     });
 
     startAnimation = () => {  
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+
         this.interval = setInterval(() => {
             this.setState({
                 dx: this.state.dx + (0.5 - Math.random()) * WIDTH,
