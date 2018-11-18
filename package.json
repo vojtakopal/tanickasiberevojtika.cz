@@ -1,14 +1,25 @@
 {
   "scripts": {
+    "test": "eslint .",
+    "test:fix": "eslint --fix .",
     "start": "next",
     "now-build": "next build && next export -o dist"
   },
   "dependencies": {
+    "lodash": "4.17.11",
     "next": "7.0.2",
     "next-images": "1.0.1",
-    "next-optimized-images": "1.4.1",
+    "popmotion": "8.5.2",
     "react": "16.6.1",
     "react-dom": "16.6.1",
+    "react-pose": "4.0.2",
     "styled-components": "4.0.3"
+  },
+  "devDependencies": {
+    "eslint": "5.9.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jsx-a11y": "6.1.2",
+    "eslint-plugin-react": "7.11.1"
   }
 }

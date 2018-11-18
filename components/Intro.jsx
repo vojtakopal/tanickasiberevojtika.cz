@@ -1,24 +1,47 @@
+import { shuffle, size, map } from 'lodash/fp';
 import styled from 'styled-components';
-import IntroImage from './intro_bg.jpg';
+import InfiniteVirtualGrid from "./InfiniteVirtualGrid";
+import Picture from "./Picture";
 
-export default () => (
-    <ImageWrapper background={IntroImage}>
-    </ImageWrapper>
+const originalImages = [
+    require('./intro_bg.jpg'),
+    require('./intro2_bg.jpg'),
+    require('./intro3_bg.jpg'),
+    require('./intro4_bg.jpg'),
+    require('./intro5_bg.jpg'),
+];
+
+const images = map(() => shuffle(originalImages), originalImages);
+
+const Welcome = () => (
+    <WelcomeWrapper>
+        T❤️V
+    </WelcomeWrapper>
 );
-
-const Image = styled.img`
-    position: absolute;
-    width: 100%;
-`;
-
-const ImageWrapper = styled.div`
+const WelcomeWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background-image: url(${props => props.background});
-    background-size: cover;
-    background-position: 90% top;
+    right: 0;
+    bottom: 0;
+    font-size: 5em;
+    font-family: Helvetica;
 `;
+
+const mod = m => x => (((x % m) + m) % m);
+
+const renderItem = ({ col, row }) => {
+    if ((col + row) % 2 === 0) {
+        const imagesCount = size(images);
+        const imageRow = mod(imagesCount)(row >> 1);
+        const imageCol = mod(imagesCount)(col >> 1);
+        return <Picture image={images[imageRow][imageCol]} />;
+    } 
+
+    return <Welcome />;
+};
+
+export default () => <InfiniteVirtualGrid renderItem={renderItem} />;
