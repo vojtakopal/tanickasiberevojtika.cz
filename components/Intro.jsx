@@ -18,6 +18,13 @@ const Welcome = () => (
         T❤️V
     </WelcomeWrapper>
 );
+
+const Invitation = () => (
+    <InvitationWrapper>
+        It's happening!
+    </InvitationWrapper>
+);
+
 const WelcomeWrapper = styled.div`
     display: flex;
     align-items: center;
@@ -32,6 +39,10 @@ const WelcomeWrapper = styled.div`
     color: white;
 `;
 
+const InvitationWrapper = styled(WelcomeWrapper)`
+    font-size: 2em;
+`;
+
 const mod = m => x => (((x % m) + m) % m);
 
 const renderItem = ({ col, row }) => {
@@ -41,6 +52,10 @@ const renderItem = ({ col, row }) => {
         const imageCol = mod(imagesCount)(col >> 1);
         return <Picture image={images[imageRow][imageCol]} />;
     } 
+
+    if ((col + row) % 4 === 1) {
+        return <Invitation />;
+    }
 
     return <Welcome />;
 };

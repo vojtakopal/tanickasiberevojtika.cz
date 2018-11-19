@@ -149,7 +149,7 @@ const Draggable = posed.div({
 });
 
 const Container = styled.div`
-    background: #333;
+    background: #111;
     position: absolute;
     overflow: hidden;
     top: 0;
